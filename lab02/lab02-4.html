@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the document -->
+    <title>Document</title>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+  </head>
+  <style>
+    /* Define a style for elements with class 'warning' */
+    .warning {
+      color: red;
+    }
+  </style>
+  <body>
+    <!-- Heading of the document -->
+    <h1>Drawing with Data</h1>
+    <p id="chart"></p>
+    <!-- D3.js script for creating a bar chart from CSV data -->
+    <script>
+      // Variables for chart configuration
+      var spaceBar = 5;
+      var h = 200;
+      var w = 500;
+
+      // Select the body element and append an SVG for the chart
+      var svg1 = d3
+        .select("#chart")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+      // Function to create a bar chart
+      function barChart(wombatSightings) {
+        svg1
+          .selectAll("rect")
+          .data(wombatSightings)
+          .enter()
+          .append("rect")
+          .attr("x", function (d, i) {
+            // Set the x-coordinate of each bar
+            return i * (w / wombatSightings.length) + spaceBar;
+          })
+          .attr("y", function (d, i) {
+            // Set the y-coordinate of each bar based on the number of wombats
+            return h - d.wombats * 4;
+          })
+          .attr("width", w / wombatSightings.length - spaceBar)
+          .attr("height", function (d) {
+            // Set the height of each bar based on the number of wombats
+            return parseInt(d.wombats * 5);
+          })
+          .attr("fill", "steelblue"); // Set the fill color of the bars
+      }
+
+      // Load data from a CSV file
+      d3.csv("dataset.csv").then(function (data) {
+        wombatSightings = data; // Assign the loaded data to the variable
+        console.log(wombatSightings); // Log the data to the console
+        barChart(wombatSightings); // Call the function to create the bar chart
+      });
+    </script>
+    <!-- Line break element -->
+    <br /><bf />
+    <!-- Footer information -->
+    <footer>
+      COS30045 Data Visualization <br />
+      Duong Quang Thanh
+    </footer>
+  </body>
+</html>

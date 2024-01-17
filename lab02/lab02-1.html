@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the document -->
+    <title>Document</title>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+  </head>
+  <style>
+    /* Define a style for elements with class 'warning' */
+    .warning {
+      color: red;
+    }
+  </style>
+  <body>
+    <!-- Heading of the document -->
+    <h1>The D3 Journey starts here.....</h1>
+    <!-- D3.js script -->
+    <script>
+      // Dataset array
+      var dataset = [14, 5, 26, 23, 9];
+
+      // Select the body element, bind data, and append paragraphs
+      d3.select("body")
+        .selectAll("p")
+        .data(dataset)
+        .enter()
+        .append("p")
+        .text(function (d, i) {
+          // Conditional text based on the value of 'd'
+          if (d < 14) {
+            return "Joe watched " + d + " cat videos today";
+          } else {
+            return "Warning: Joe watched " + d + " cat videos today";
+          }
+        })
+        // Apply the 'warning' class based on a condition
+        .classed("warning", function (d) {
+          return d >= 14;
+        });
+    </script>
+    <!-- Line break element -->
+    <br /><bf />
+  </body>
+</html>

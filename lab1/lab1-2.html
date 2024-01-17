@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the document -->
+    <title>Lab01</title>
+  </head>
+  <body>
+    <!-- Main heading -->
+    <h1>Title of Article about Interesting Visualization</h1>
+    <!-- Subheading with the author's name -->
+    <h2>Pets and the Pandemic</h2>
+
+    <!-- Paragraph describing the content of the article -->
+    <p>
+      A report from Animal Medicines Australia (AMA) has found that many
+      Australians took the opportunity to introduce a pet into their household
+      during the pandemic. Their survey indicated that there was a significant
+      increase in the percent of households taking in a new dog, fish or bird.
+      Their research also indicated that pets had a number of positive
+      influences on their lives such as:
+    </p>
+
+    <!-- Unordered list with three list items -->
+    <ul>
+      <li>companionship</li>
+      <li>better mental health</li>
+      <li>joy and happiness.</li>
+    </ul>
+
+    <!-- Buttons for selecting different images -->
+    <div>
+      <button style="background-color: #bdacbd" id="button1">2019</button>
+      <button style="background-color: grey" id="button2">2021</button>
+      <button style="background-color: #756483" id="button3">Both</button>
+    </div>
+
+    <!-- Image with an initial source and alt attribute -->
+    <img
+      src="animal1.png"
+      alt="Fig 1. Percent of most popular pods owned by Australians in 2019"
+      id="myImage"
+    />
+    <figure id="figure">
+      Fig 1. Percent of most popular pods owned by Australians in 2019
+    </figure>
+    <!-- Another paragraph with additional content -->
+    <p>
+      With the increase in pet ownership the AMA are encouraging policy makers
+      to consider the needs of companion animals and their owners when
+      considering rental, strata and body corporate regulations are well as
+      accepting animals in public places and transport.
+    </p>
+
+    <!-- Footer section with course information -->
+    <footer>
+      COS30045 Data Visualization <br />
+      Semester 1 2024
+    </footer>
+
+    <!-- JavaScript code for image switching based on button clicks -->
+    <script>
+      // Get the image element by ID
+      const image = document.getElementById("myImage");
+      const figure = document.getElementById("figure");
+
+      // Event listener for the first button
+      document.getElementById("button1").addEventListener("click", function () {
+        image.src = "animal1.png";
+        image.alt =
+          "Fig 1. Percent of most popular pods owned by Australians in 2019";
+        figure.innerHTML =
+          "Fig 1. Percent of most popular pods owned by Australians in 2019";
+      });
+
+      // Event listener for the second button
+      document.getElementById("button2").addEventListener("click", function () {
+        image.src = "animal2.png";
+        image.alt =
+          "Fig 2. Percent of most popular pods owned by Australians in 2021";
+        figure.innerHTML =
+          "Fig 2. Percent of most popular pods owned by Australians in 2021";
+      });
+
+      // Event listener for the third button
+      document.getElementById("button3").addEventListener("click", function () {
+        image.src = "animal3.png";
+        image.alt =
+          "Fig 3. Percent of most popular pods owned by Australians in 2019 and 2021";
+        figure.innerHTML =
+          "Fig 3. Percent of most popular pods owned by Australians in 2019 and 2021";
+      });
+    </script>
+    <style>
+      body {
+        display: block;
+      }
+      h1 {
+        font-size: 50px;
+        color: #708091;
+      }
+
+      button {
+        border-radius: 5px;
+        border-color: transparent;
+        width: 100px;
+        height: 40px;
+        margin-bottom: 10px;
+      }
+      button:hover {
+        border-color: gray;
+      }
+      footer {
+        background-color: gray;
+      }
+    </style>
+  </body>
+</html>

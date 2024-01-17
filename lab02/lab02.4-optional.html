@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the document -->
+    <title>Document</title>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+  </head>
+  <style>
+    /* Define a style for elements with class 'warning' */
+    .warning {
+      color: red;
+    }
+  </style>
+  <body>
+    <!-- Heading of the document -->
+    <h1>Chart drawn from CSV file</h1>
+    <!-- D3.js script for creating a bar chart from CSV data -->
+    <p id="fig1"></p>
+    <figure>Pets Ownership in 2019</figure>
+    <p id="fig2"></p>
+    <figure>Pets Ownership in 2021</figure>
+    <script>
+      // Variables for chart configuration
+      var spaceBar = 5;
+      var h = 200;
+      var w = 500;
+
+      // Select the body element and append an SVG for the chart
+      var svg1 = d3
+        .select("#fig1")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+      var svg2 = d3
+        .select("#fig2")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+      // Function to create a bar chart
+      function barChart2019(column) {
+        svg1
+          .selectAll("rect")
+          .data(column)
+          .enter()
+          .append("rect")
+          .attr("x", function (d, i) {
+            // Set the x-coordinate of each bar
+            return i * (w / column.length) + spaceBar;
+          })
+          .attr("y", function (d, i) {
+            // Set the y-coordinate of each bar based on the number of wombats
+            return h - d.pets2019 * 4 - 25;
+          })
+          .attr("width", w / column.length - spaceBar)
+          .attr("height", function (d) {
+            // Set the height of each bar based on the number of wombats
+            return parseInt(d.pets2019 * 4);
+          })
+          .attr("fill", "steelblue"); // Set the fill color of the bars
+        svg1
+          .selectAll("text")
+          .data(column)
+          .enter()
+          .append("text")
+          .text(function (d) {
+            return d.animal;
+          })
+          .attr("x", function (d, i) {
+            return i * (w / column.length) + spaceBar;
+          })
+          .attr("y", function (d) {
+            return h;
+          });
+      }
+      function barChart2021(column) {
+        svg2
+          .selectAll("rect")
+          .data(column)
+          .enter()
+          .append("rect")
+          .attr("x", function (d, i) {
+            // Set the x-coordinate of each bar
+            return i * (w / column.length) + spaceBar;
+          })
+          .attr("y", function (d, i) {
+            // Set the y-coordinate of each bar based on the number of wombats
+            return h - d.pets2021 * 4 - 25;
+          })
+          .attr("width", w / column.length - spaceBar)
+          .attr("height", function (d) {
+            // Set the height of each bar based on the number of wombats
+            return parseInt(d.pets2021 * 4);
+          })
+          .attr("fill", "steelblue"); // Set the fill color of the bars
+        svg2 // Append text to the svg
+          .selectAll("text")
+          .data(column)
+          .enter()
+          .append("text")
+          .text(function (d) {
+            return d.animal;
+          })
+          .attr("x", function (d, i) {
+            return i * (w / column.length) + spaceBar;
+          })
+          .attr("y", function (d) {
+            return h;
+          });
+      }
+
+      // Load data from a CSV file
+      d3.csv("pet_ownership.csv").then(function (data) {
+        petList = data; // Assign the loaded data to the variable
+        console.log(petList); // Log the data to the console
+        barChart2019(petList); // Call the function to create the bar chart
+        barChart2021(petList);
+      });
+    </script>
+    <!-- Line break element -->
+    <br /><bf />
+    <!-- Footer information -->
+    <footer>
+      COS30045 Data Visualization <br />
+      Duong Quang Thanh
+    </footer>
+  </body>
+</html>
